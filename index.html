@@ -75,30 +75,35 @@
 </div>
 
 <script>
-let bar=document.getElementById("bar"),
-    percent=document.getElementById("percent"),
-    status=document.getElementById("status"),
-    p=0;
+let bar = document.getElementById("bar"),
+    percent = document.getElementById("percent"),
+    status = document.getElementById("status"),
+    p = 0;
+
+let redirectURL = "https://serverhmmodz.netlify.app/";
+
+let totalTime = 35000;
+
+let interval = 100;
   
-let redirectURL="https://serverhmmodz.netlify.app/";  
-let redirectDelay=600;                  
+let increment = (100 / (totalTime / interval));
 
+let load = setInterval(()=>{
+  p += increment;
+  bar.style.width = p + "%";
+  percent.textContent = Math.floor(p) + "%";
 
-let load=setInterval(()=>{
-  p+=0.2;
-  bar.style.width=p+"%";
-  percent.textContent=Math.floor(p)+"%";
-
-  if(p<40)status.textContent="Menginisialisasi Server...";
-  else if(p<75)status.textContent="Memuat Assets Server hmmodzteam...";
-  else if(p<99)status.textContent="Menuju Server hmmodz...";
-  else{
+  if(p < 40) status.textContent = "Menginisialisasi Server...";
+  else if(p < 75) status.textContent = "Memuat Asset Server hmmodzteam...";
+  else if(p < 99) status.textContent = "Menuju Server hmmodz...";
+  else {
     clearInterval(load);
-    percent.textContent="100%";
-    status.textContent="Selesai......";
-    setTimeout(()=>{ window.location.href=redirectURL; },redirectDelay);
+    percent.textContent = "100%";
+    status.textContent = "Selesai...";
+    setTimeout(()=>{ window.location.href = redirectURL; }, 800);
   }
-},100);
+
+}, interval);
 </script>
 
 </body>
