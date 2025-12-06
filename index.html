@@ -64,11 +64,11 @@
 
   <div class="bar"><div class="bar-inner" id="bar"></div></div>
   <div class="percent" id="percent">0%</div>
-  <div class="txt" id="status">Memulai...</div>
+  <div class="txt" id="status">Loading Data...</div>
 
   <div class="profileBox">
       <img src="https://files.catbox.moe/9qs9kl.jpg" class="profile-photo"> 
-      <h3>Profil</h3>
+      <h3>Profile</h3>
       <p><b>Developer:</b> hmmodzteam</p>
       <p><b>About:</b> Web builder & Apps Devolompent.</p>
   </div>
@@ -82,7 +82,7 @@ let bar = document.getElementById("bar"),
 
 let redirectURL = "https://serverhmmodz.netlify.app/";
 
-let totalTime = 35000;
+let totalTime = 25000;
 
 let interval = 100;
   
@@ -93,7 +93,7 @@ let load = setInterval(()=>{
   bar.style.width = p + "%";
   percent.textContent = Math.floor(p) + "%";
 
-  if(p < 40) status.textContent = "Menginisialisasi Server...";
+  if(p < 40) status.textContent = "Mendeteksi Server...";
   else if(p < 75) status.textContent = "Memuat Asset Server hmmodzteam...";
   else if(p < 99) status.textContent = "Menuju Server hmmodz...";
   else {
