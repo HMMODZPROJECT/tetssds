@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Server#2</title>
+
+<style>
+  :root{
+    --bg:#0c0b0a;
+    --gold1:#e4c075;
+    --gold2:#ffd98b;
+    --glow:0 0 18px rgba(255,208,121,.65);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins, sans-serif;color:#fff;}
+  body{background:var(--bg);height:100vh;overflow:hidden;display:flex;justify-content:center;align-items:center;}
+
+  .loader{
+    display:flex;flex-direction:column;align-items:center;gap:22px;text-align:center;
+  }
+
+  .ring{
+    width:120px;height:120px;border-radius:50%;
+    background:conic-gradient(var(--gold1),var(--gold2),var(--gold1));
+    display:flex;justify-content:center;align-items:center;
+    animation:spin 2s linear infinite; box-shadow:var(--glow);
+  }
+  .ring div{
+    width:85px;height:85px;border-radius:50%;background:#1a1714;
+    display:flex;justify-content:center;align-items:center;
+    font-weight:bold;color:var(--gold2);font-size:20px;
+    box-shadow: inset 0 0 18px rgba(255,220,150,.25);
+  }
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  .bar{width:270px;height:10px;background:#2b251f;border-radius:40px;overflow:hidden;}
+  .bar-inner{
+    width:0;height:100%;background:linear-gradient(90deg,var(--gold1),var(--gold2));
+    box-shadow:var(--glow);transition:.25s;
+  }
+
+  .percent{font-size:15px;opacity:.9;}
+  .txt{font-size:13px;opacity:.6;}
+
+  .profileBox{
+    position:absolute;bottom:25px;left:50%;transform:translateX(-50%);
+    text-align:center;font-size:14px;opacity:.9;
+  }
+  .profileBox h3{color:var(--gold2);text-shadow:var(--glow);margin-bottom:6px;}
+
+  .profile-photo{
+    width:70px;height:70px;border-radius:50%;
+    margin:auto;margin-bottom:8px;
+    object-fit:cover;
+    border:2px solid var(--gold2);
+    box-shadow:0 0 12px rgba(255,215,125,.55);
+  }
+</style>
+</head>
+<body>
+
+<div class="loader" id="loadScreen">
+  <div class="ring"><div>HM</div></div>
+
+  <div class="bar"><div class="bar-inner" id="bar"></div></div>
+  <div class="percent" id="percent">0%</div>
+  <div class="txt" id="status">Memulai...</div>
+
+  <div class="profileBox">
+      <img src="https://files.catbox.moe/9qs9kl.jpg" class="profile-photo"> 
+      <h3>Profil</h3>
+      <p><b>Developer:</b> hmmodzteam</p>
+      <p><b>About:</b> Web builder & Apps Devolompent.</p>
+  </div>
+</div>
+
+<script>
+let bar=document.getElementById("bar"),
+    percent=document.getElementById("percent"),
+    status=document.getElementById("status"),
+    p=0;
+  
+let redirectURL="https://serverhmmodz.netlify.app/";  
+let redirectDelay=600;                  
+
+
+let load=setInterval(()=>{
+  p+=0.2;
+  bar.style.width=p+"%";
+  percent.textContent=Math.floor(p)+"%";
+
+  if(p<40)status.textContent="Menginisialisasi Server...";
+  else if(p<75)status.textContent="Memuat Assets Server hmmodzteam...";
+  else if(p<99)status.textContent="Menuju Server hmmodz...";
+  else{
+    clearInterval(load);
+    percent.textContent="100%";
+    status.textContent="Selesai......";
+    setTimeout(()=>{ window.location.href=redirectURL; },redirectDelay);
+  }
+},100);
+</script>
+
+</body>
+</html>
