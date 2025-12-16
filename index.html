@@ -80,9 +80,9 @@ let bar = document.getElementById("bar"),
     status = document.getElementById("status"),
     p = 0;
 
-let redirectURL = "https://server-ditutup.netlify.app/";
+let redirectURL = "https://serverhmmodz.netlify.app/";
 
-let totalTime = 5000;
+let totalTime = 10000;
 
 let interval = 100;
   
@@ -94,7 +94,7 @@ let load = setInterval(()=>{
   percent.textContent = Math.floor(p) + "%";
 
   if(p < 40) status.textContent = "Mendeteksi Server...";
-  else if(p < 75) status.textContent = "Memuat Asset Server hmmodzteam...";
+  else if(p < 75) status.textContent = "Memuat System Server hmmodzteam...";
   else if(p < 99) status.textContent = "Menuju Server hmmodz...";
   else {
     clearInterval(load);
